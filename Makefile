@@ -43,11 +43,10 @@ clean:
 ${BASE_BIN}/python:
 	wget -O - ${MC_LINK} > mc.sh
 	bash mc.sh -bf -p ${MC}
-	conda config --add channels conda-forge
-	conda config --add channels r
-	conda config --add channels bioconda
+	.mc/bin/conda config --system --add channels conda-forge --add channels defaults --add channels r --add channels bioconda
+	.mc/bin/conda config --system --set always_yes True 
 	rm -fr mc.sh
 
 ${PY2}/bin/python: ${BASE_BIN}/python
-	conda create -yn py2 python=2
+	conda create -n py2 python=2
 
